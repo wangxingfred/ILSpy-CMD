@@ -44,12 +44,14 @@ namespace ILSpyCMD
 			Console.WriteLine("       -j  Decompile SwitchStatement On String. OFF  if exists this option, default ON. ");
 			Console.WriteLine("       -k  Decompile Using Declarations. OFF  if exists this option, default ON. ");
 			Console.WriteLine("       -l  References dll path which dll will be loaded but not decompile , they use as References.");
+			Console.WriteLine("       -m  Decompile MVID. OFF  if exists this option, default ON. ");
 			Console.WriteLine("       -n  Solution Name");
 			Console.WriteLine("       -r  Decompile query Expressions. OFF  if exists this option, default ON. ");
 
 			Console.WriteLine("       -s  Decompile fully Qualify Ambiguous Type Names. OFF  if exists this option, default ON. ");
 			Console.WriteLine("       -t  Output language type, accept il or csharp, default is csharp.");
 			Console.WriteLine("       -p  Use variable names from debug symbols, if available. OFF  if exists this option, default ON. ");
+			Console.WriteLine("       -q  Put dll path on top of decompiled file. OFF  if exists this option, default ON. ");
 			Console.WriteLine("       -x  Use C# 3.0 object/collection initializers. OFF if exists this option, default ON. ");
 			Console.WriteLine("       -y  Include XML documentation comments in the decompiled code. OFF  if exists this option, default ON.");
 			Console.WriteLine("       -z  Fold braces. ON if exists this option, default OFF ");
@@ -127,6 +129,10 @@ namespace ILSpyCMD
 					ds.UsingDeclarations = false;
 					break;
 
+				case 'm':
+					ds.WithMvid = false;
+					break;
+
 				case 'r':
 					ds.QueryExpressions = false;
 					break;
@@ -175,6 +181,7 @@ namespace ILSpyCMD
 			ds.AsyncAwait = true;
 			ds.YieldReturn = true;
 			string onlyDecomileClassName = null;
+			bool dllPathOnTop = true;
 
 			List<string> onlyDecompilingFileNameList = new List<string>();
 			//parsing args
@@ -192,30 +199,29 @@ namespace ILSpyCMD
 							expOpt = x;
 							continue;
 
+						case "-q":
+							dllPathOnTop = false;
+							continue;
+
 						default:
 
-							if (x.StartsWith("-"))
+							if (x.Length < 2)
 							{
-								if (x.Length < 2)
+								Console.WriteLine(" Unexpected options " + x);
+								showUsage();
+								return;
+							}
+
+							for (int i = 1; i < x.Length; i++)
+							{
+								if (!praseDecompileSetting(x[i], ds))
 								{
 									Console.WriteLine(" Unexpected options " + x);
 									showUsage();
 									return;
 								}
-
-								for (int i = 0; i < x.Length; i++)
-								{
-									if (!praseDecompileSetting(x[i], ds))
-									{
-										Console.WriteLine(" Unexpected options " + x);
-										showUsage();
-										return;
-									}
-								}
-								continue;
 							}
-
-							break;
+							continue;
 					}
 				}
 				else if (expOpt != null)
@@ -333,6 +339,7 @@ namespace ILSpyCMD
 			int num = 0;
 			LoadedAssembly[] ls = asmlist.GetAssemblies();
 			var decompilationOptions = new DecompilationOptions();
+			decompilationOptions.AssemblyFileNameOnTop = dllPathOnTop;
 			decompilationOptions.FullDecompilation = true;
 			decompilationOptions.assenmlyList = asmlist;
 			decompilationOptions.DecompilerSettings = ds;

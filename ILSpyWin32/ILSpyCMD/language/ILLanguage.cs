@@ -116,8 +116,11 @@ namespace ICSharpCode.ILSpy
 
 		public override void DecompileAssembly(LoadedAssembly assembly, ITextOutput output, DecompilationOptions options)
 		{
-			output.WriteLine("// " + assembly.FileName);
-			output.WriteLine();
+			if (options.AssemblyFileNameOnTop)
+			{
+				output.WriteLine("// " + assembly.FileName);
+				output.WriteLine();
+			}
 
 			ReflectionDisassembler rd = new ReflectionDisassembler(output, detectControlStructure, options.CancellationToken);
 			if (options.FullDecompilation)
@@ -125,7 +128,7 @@ namespace ICSharpCode.ILSpy
 			if (assembly.AssemblyDefinition != null)
 				rd.WriteAssemblyHeader(assembly.AssemblyDefinition);
 			output.WriteLine();
-			rd.WriteModuleHeader(assembly.ModuleDefinition);
+			rd.WriteModuleHeader(assembly.ModuleDefinition, options.DecompilerSettings);
 			if (options.FullDecompilation)
 			{
 				output.WriteLine();

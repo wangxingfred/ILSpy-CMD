@@ -86,7 +86,11 @@ namespace ICSharpCode.ILSpy
 
 		public virtual void DecompileAssembly(LoadedAssembly assembly, ITextOutput output, DecompilationOptions options)
 		{
-			WriteCommentLine(output, assembly.FileName);
+			if (options.AssemblyFileNameOnTop)
+			{
+				WriteCommentLine(output, assembly.FileName);
+			}
+			
 			if (assembly.AssemblyDefinition != null)
 			{
 				var name = assembly.AssemblyDefinition.Name;

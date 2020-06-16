@@ -1,17 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICSharpCode.NRefactory", "NRefactory\ICSharpCode.NRefactory\ICSharpCode.NRefactory.csproj", "{3B2A5653-EC97-4001-BB9B-D90F1AF2C371}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICSharpCode.NRefactory.CSharp", "NRefactory\ICSharpCode.NRefactory.CSharp\ICSharpCode.NRefactory.CSharp.csproj", "{53DCA265-3C3C-42F9-B647-F72BA678122B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICSharpCode.Decompiler", "ICSharpCode.Decompiler\ICSharpCode.Decompiler.csproj", "{984CC812-9470-4A13-AFF9-CC44068D666C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3B2A5653-EC97-4001-BB9B-D90F1AF2C371} = {3B2A5653-EC97-4001-BB9B-D90F1AF2C371}
+		{53DCA265-3C3C-42F9-B647-F72BA678122B} = {53DCA265-3C3C-42F9-B647-F72BA678122B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILSpyCMD.Tests", "ILSpyCMD.Tests\ILSpyCMD.Tests.csproj", "{E494A3AA-DFA4-451F-9DC6-670F486F3E5E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILSpyCMD", "ILSpyCMD\ILSpyCMD.csproj", "{25EB6D5A-5FB8-4850-8833-A5177E1D69A4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{984CC812-9470-4A13-AFF9-CC44068D666C} = {984CC812-9470-4A13-AFF9-CC44068D666C}
+		{3B2A5653-EC97-4001-BB9B-D90F1AF2C371} = {3B2A5653-EC97-4001-BB9B-D90F1AF2C371}
+		{53DCA265-3C3C-42F9-B647-F72BA678122B} = {53DCA265-3C3C-42F9-B647-F72BA678122B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILSpyCMD.Organization", "ILSpyCMD.Organization\ILSpyCMD.Organization.csproj", "{BD886813-4A4E-449C-94A1-370175ACAC49}"
 EndProject
@@ -195,8 +204,8 @@ Global
 		{984CC812-9470-4A13-AFF9-CC44068D666C}.net_4_5_Debug|Any CPU.Build.0 = Debug|Any CPU
 		{984CC812-9470-4A13-AFF9-CC44068D666C}.net_4_5_Debug|x86.ActiveCfg = Debug|Any CPU
 		{984CC812-9470-4A13-AFF9-CC44068D666C}.net_4_5_Debug|x86.Build.0 = Debug|Any CPU
-		{984CC812-9470-4A13-AFF9-CC44068D666C}.net_4_5_Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{984CC812-9470-4A13-AFF9-CC44068D666C}.net_4_5_Release|Any CPU.Build.0 = Debug|Any CPU
+		{984CC812-9470-4A13-AFF9-CC44068D666C}.net_4_5_Release|Any CPU.ActiveCfg = Release|Any CPU
+		{984CC812-9470-4A13-AFF9-CC44068D666C}.net_4_5_Release|Any CPU.Build.0 = Release|Any CPU
 		{984CC812-9470-4A13-AFF9-CC44068D666C}.net_4_5_Release|x86.ActiveCfg = Release|Any CPU
 		{984CC812-9470-4A13-AFF9-CC44068D666C}.net_4_5_Release|x86.Build.0 = Release|Any CPU
 		{984CC812-9470-4A13-AFF9-CC44068D666C}.Release|Any CPU.ActiveCfg = Release|Any CPU

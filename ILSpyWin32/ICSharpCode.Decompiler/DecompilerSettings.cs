@@ -318,6 +318,20 @@ namespace ICSharpCode.Decompiler
 			}
 		}
 
+		private bool withMvid = true;
+		public bool WithMvid
+		{
+			get { return withMvid; }
+			set
+			{
+				if (withMvid != value)
+				{
+					withMvid = value;
+					OnPropertyChanged("withMVID");
+				}
+			}
+		}
+
 		#region Options to aid VB decompilation
 
 		private bool introduceIncrementAndDecrement = true;

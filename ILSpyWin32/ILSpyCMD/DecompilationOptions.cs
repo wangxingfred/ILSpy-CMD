@@ -29,6 +29,7 @@ namespace ICSharpCode.ILSpy
 	/// </summary>
 	public class DecompilationOptions
 	{
+		public bool AssemblyFileNameOnTop { get; set; }
 		/// <summary>
 		/// Gets whether a full decompilation (all members recursively) is desired.
 		/// If this option is false, language bindings are allowed to show the only headers of the decompiled element's children.
